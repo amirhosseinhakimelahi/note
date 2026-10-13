@@ -1,0 +1,6 @@
+{
+  "name": "Daylight",
+  "description": "Daylight is a calm, friendly, premium daily organizer for students and busy people featuring tasks, notes, calendar, birthdays, and focus timer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

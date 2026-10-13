@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode for Tailwind CSS v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-primary: var(--brand-primary, #5548E0);
+  --color-brand-hover: var(--brand-hover, #4537D0);
+  --color-brand-soft: var(--brand-soft, #EEF2FF);
+  --color-surface: var(--bg-surface, #FFFFFF);
+  --color-page: var(--bg-page, #FAF8F5);
+}
+
+/* ================= THEME PALETTES (LIGHT) ================= */
+:root,
+html[data-palette="warm_linen"] {
+  --bg-page: #FAF8F5;
+  --bg-surface: #FFFFFF;
+  --text-main: #141B2D;
+  --text-muted: #5B6A82;
+  --brand-primary: #5548E0;
+  --brand-hover: #4537D0;
+  --brand-soft: #EEF2FF;
+  --border-subtle: #E8E3DA;
+  --card-shadow: 0 4px 20px -2px rgba(20, 27, 45, 0.05);
+}
+
+html[data-palette="sage"] {
+  --bg-page: #F4F7F4;
+  --bg-surface: #FFFFFF;
+  --text-main: #0F2317;
+  --text-muted: #4B6B57;
+  --brand-primary: #0D9488;
+  --brand-hover: #0F766E;
+  --brand-soft: #ECFDF5;
+  --border-subtle: #D6E4DB;
+  --card-shadow: 0 4px 20px -2px rgba(15, 35, 23, 0.05);
+}
+
+html[data-palette="soft_lavender"] {
+  --bg-page: #F8F6FD;
+  --bg-surface: #FFFFFF;
+  --text-main: #1D1531;
+  --text-muted: #665880;
+  --brand-primary: #7C3AED;
+  --brand-hover: #6D28D9;
+  --brand-soft: #F5F3FF;
+  --border-subtle: #E6DEF3;
+  --card-shadow: 0 4px 20px -2px rgba(29, 21, 49, 0.05);
+}
+
+html[data-palette="slate_blue"] {
+  --bg-page: #F3F6FA;
+  --bg-surface: #FFFFFF;
+  --text-main: #0E1829;
+  --text-muted: #49607C;
+  --brand-primary: #0284C7;
+  --brand-hover: #0369A1;
+  --brand-soft: #F0F9FF;
+  --border-subtle: #D6E2ED;
+  --card-shadow: 0 4px 20px -2px rgba(14, 24, 41, 0.05);
+}
+
+/* ================= THEME PALETTES (DARK) ================= */
+html.dark,
+html.dark[data-palette="warm_linen"] {
+  --bg-page: #0C101A;
+  --bg-surface: #141A28;
+  --text-main: #F3F6FB;
+  --text-muted: #91A0B6;
+  --brand-primary: #818CF8;
+  --brand-hover: #6366F1;
+  --brand-soft: #1E1B4B;
+  --border-subtle: #242D40;
+  --card-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
+}
+
+html.dark[data-palette="sage"] {
+  --bg-page: #08130E;
+  --bg-surface: #102218;
+  --text-main: #F0FDF4;
+  --text-muted: #84A792;
+  --brand-primary: #34D399;
+  --brand-hover: #10B981;
+  --brand-soft: #064E3B;
+  --border-subtle: #1C3829;
+  --card-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
+}
+
+html.dark[data-palette="soft_lavender"] {
+  --bg-page: #100C1F;
+  --bg-surface: #1B1530;
+  --text-main: #FAF5FF;
+  --text-muted: #A192C0;
+  --brand-primary: #A78BFA;
+  --brand-hover: #8B5CF6;
+  --brand-soft: #2E1065;
+  --border-subtle: #2E234E;
+  --card-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
+}
+
+html.dark[data-palette="slate_blue"] {
+  --bg-page: #0B1220;
+  --bg-surface: #131F35;
+  --text-main: #F8FAFC;
+  --text-muted: #8DA1BE;
+  --brand-primary: #38BDF8;
+  --brand-hover: #0284C7;
+  --brand-soft: #082F49;
+  --border-subtle: #1E3150;
+  --card-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
+}
+
+/* ================= UTILITY CLASSES FOR DYNAMIC THEME ================= */
+.bg-brand-primary {
+  background-color: var(--brand-primary);
+}
+.hover\:bg-brand-hover:hover {
+  background-color: var(--brand-hover);
+}
+.text-brand-primary {
+  color: var(--brand-primary);
+}
+.border-brand-primary {
+  border-color: var(--brand-primary);
+}
+.bg-brand-soft {
+  background-color: var(--brand-soft);
+}
+.text-brand-soft {
+  color: var(--brand-soft);
+}
+.bg-surface-card {
+  background-color: var(--bg-surface);
+}
+.bg-page-base {
+  background-color: var(--bg-page);
+}
+.border-theme-subtle {
+  border-color: var(--border-subtle);
+}
+
+/* Base Body Styles */
+@layer base {
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+  }
+
+  /* Smooth selective theme transitions without scrolling lag */
+  body.theme-transitioning,
+  body.theme-transitioning header,
+  body.theme-transitioning nav,
+  body.theme-transitioning main {
+    transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+  }
+}
+
+/* Smooth mobile-friendly scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+
+html[data-density="compact"] {
+  font-size: 15px;
+}
+
+/* Smooth Canvas & Drawing helper styles */
+canvas {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
